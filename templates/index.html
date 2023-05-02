@@ -8,11 +8,48 @@
 </head>
 <body>
     <div class="container">
-        <h1>Painting of the Day</h1>
-        <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="painting">
-        <h2>{{ painting.title }}</h2>
-        <p>By {{ painting.artist }} ({{ painting.date }})</p>
-        <p>{{ painting.info }}</p>
+        <div class="content">
+            <div class="left">
+                <h1>Discover Art</h1>
+                <button id="discover-art">Discover Art</button>
+                <div id="loader" style="display:none;">
+                    <img src="/static/images/loader.gif" alt="Loading...">
+                </div>
+                <div id="art-info" style="display:none;">
+                    <h2>{{ painting.title }}</h2>
+                    <p>By {{ painting.artist }} ({{ painting.date }})</p>
+                    <p>{{ painting.info }}</p>
+                </div>
+                <p class="credit">Developed with <span>&hearts;</span> by Dylan. Using Harvard and OpenAI API. Hosted and deployed on Vercel.</p>
+            </div>
+            <div class="right">
+                <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="painting" id="painting-img" style="display:none;">
+            </div>
+        </div>
     </div>
+    <script>
+        function showLoader() {
+            document.getElementById('discover-art').style.display = 'none';
+            document.getElementById('loader').style.display = 'block';
+        }
+
+        function hideLoader() {
+            document.getElementById('discover-art').style.display = 'block';
+            document.getElementById('loader').style.display = 'none';
+        }
+
+        function showArt() {
+            document.getElementById('art-info').style.display = 'block';
+            document.getElementById('painting-img').style.display = 'block';
+        }
+
+        document.getElementById('discover-art').addEventListener('click', function() {
+            showLoader();
+            setTimeout(function() {
+                hideLoader();
+                showArt();
+            }, 1000);
+        });
+    </script>
 </body>
 </html>
