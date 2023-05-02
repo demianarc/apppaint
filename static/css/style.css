@@ -1,79 +1,93 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
-
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  min-height: 100vh;
-  background-color: #f0f0f0;
-}
-
-.container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 2rem;
+  background-color: #f0f0f0;
+  background-image: url('/background_image');
+  background-size: cover;
+  background-position: center;
+  background-blur: 10px;
+}
+
+.container {
+  max-width: 1200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .content {
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  max-width: 1200px;
   width: 100%;
-  margin: 0 auto;
 }
 
 .left {
   flex: 1;
-  padding-right: 2rem;
-  text-align: left;
-}
-
-.right {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .right {
   flex: 1;
-  padding-left: 2rem;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-}
-
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-
-button {
-  font-family: 'Roboto', sans-serif;
-  background-color: #007AFF;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  font-size: 1.2rem;
-  padding: 12px 24px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-}
-
-button:hover {
-  background-color: #005BD2;
-}
-
-button:active {
-  background-color: #004BBF;
-}
-
-.painting {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  }
+  
+  .painting {
   max-width: 100%;
   height: auto;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.credit {
-  font-size: 0.8rem;
-  text-align: center;
-  padding-top: 1rem;
-}
+  border-radius: 0.5rem;
+  }
+  
+  h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+  }
+  
+  h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  }
+  
+  p {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+  text-indent: 1rem;
+  }
+  
+  .credit {
+  font-size: 0.7rem;
+  margin-top: 1rem;
+  }
+  
+  .credit span {
+  color: red;
+  }
+  
+  button {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  }
+  
+  button:hover {
+  background-color: #555;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }

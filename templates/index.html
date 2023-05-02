@@ -10,8 +10,8 @@
     <div class="container">
         <div class="content">
             <div class="left">
-                <h1>Discover Art</h1>
-                <button id="discover-art">Discover Art</button>
+                <h1>What if you discovered a beautiful artwork everyday?</h1>
+                <button id="discover-art">Discover</button>
                 <div id="loader" style="display:none;">
                     <img src="/static/images/loader.gif" alt="Loading...">
                 </div>
@@ -19,11 +19,14 @@
                     <h2>{{ painting.title }}</h2>
                     <p>By {{ painting.artist }} ({{ painting.date }})</p>
                     <p>{{ painting.info }}</p>
+                    <button id="discover-another">Discover Another</button>
                 </div>
                 <p class="credit">Developed with <span>&hearts;</span> by Dylan. Using Harvard and OpenAI API. Hosted and deployed on Vercel.</p>
             </div>
             <div class="right">
-                <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="painting" id="painting-img" style="display:none;">
+                <a href="{{ painting.harvard_url }}" target="_blank">
+                    <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="painting" id="painting-img" style="display:none;">
+                </a>
             </div>
         </div>
     </div>
@@ -49,6 +52,10 @@
                 hideLoader();
                 showArt();
             }, 1000);
+        });
+
+        document.getElementById('discover-another').addEventListener('click', function() {
+            location.reload();
         });
     </script>
 </body>
