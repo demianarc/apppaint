@@ -3,32 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painting of the Day</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Artify</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 </head>
 <body>
     <div class="container">
-        <div class="content">
-            <div class="left">
-                <h1 id="art-title">Painting of the Day</h1>
-                <div id="loader" style="display:none;">
-                    <img src="/static/images/loader.gif" alt="Loading...">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 col-sm-12 left-col">
+                <h1 class="main-heading">Artify</h1>
+                <p class="sub-heading">Discover and appreciate great works of art</p>
+                <div class="art-info">
+                    <div class="info">
+                        <h2 id="title">{{ painting.title }}</h2>
+                        <p id="artist">{{ painting.artist }}</p>
+                        <p id="date">{{ painting.date }}</p>
+                        <p id="interpretation">{{ painting.info.interpretation }}</p>
+                        <p id="poem">{{ painting.info.poem }}</p>
+                        <p id="article">{{ painting.info.article }}</p>
+                        <button class="btn-discover" onclick="loadNewPainting()">Discover More</button>
+                    </div>
+                    <div class="art-image">
+                        <img id="image" src="{{ painting.image_url }}" alt="{{ painting.title }}" />
+                    </div>
                 </div>
-                <div id="art-info" style="display:none;">
-                    <h2>{{ painting.title }}</h2>
-                    <p>By {{ painting.artist }} ({{ painting.date }})</p>
-                    <p class="interpretation">{{ painting.info.interpretation }}</p>
-                    <p class="poem">{{ painting.info.poem }}</p>
-                    <p class="article">{{ painting.info.article }}</p>
-                    <button id="discover-another">Discover Another</button>
-                </div>
-                <p class="credit">Developed with <span>&hearts;</span> by Dylan. Using Harvard and OpenAI API. Hosted and deployed on Vercel.</p>
             </div>
-            <div class="right">
-                <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="painting" id="painting-img">
+            <div class="col-lg-6 col-md-12 col-sm-12 right-col">
+                <div class="credits">
+                    <p>Developed with &lt;3 by Dylan.</p>
+                    <p>Using Harvard and OpenAI API.</p>
+                    <p>Hosted and deployed on Vercel.</p>
+                </div>
             </div>
         </div>
     </div>
-    <script src="/static/js/main.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 </html>
