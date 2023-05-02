@@ -64,6 +64,6 @@ def painting_of_the_day():
     return render_template('index.html', painting=painting)
 
 if __name__ == '__main__':
-    from gunicorn.app.wsgiapp import WSGIApplication
-    application = WSGIApplication()
-    application.run()
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
