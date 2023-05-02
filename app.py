@@ -13,8 +13,11 @@ openai.api_key = os.environ.get("OPENAI_API_KEY")
 
 def scrape_painting():
     api_key = os.environ.get("HARVARD_API_KEY")
-    url = "https://api.harvardartmuseums.org/object?apikey={api_key}&size=100&sort=random&classification=Paintings&hasimage=1&sortorder=asc"
+    url = f"https://api.harvardartmuseums.org/object?apikey={api_key}&size=100&sort=random&classification=Paintings&hasimage=1&sortorder=asc"
     response = requests.get(url)
+    print(f"URL: {url}")
+    print(f"Response status code: {response.status_code}")
+    print(f"Response text: {response.text}")
     data = response.json()
 
     if "records" not in data or not data["records"]:
@@ -61,4 +64,6 @@ def painting_of_the_day():
     return render_template('index.html', painting=painting)
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5001)  # Change the port number
+    from gunicorn.app.wsgiapp import WSGIApplication
+    application = WSGIApplication()
+    application.run()
