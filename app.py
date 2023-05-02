@@ -8,8 +8,9 @@ app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 
-# Load OpenAI API key from environment variables
+# Load API keys from environment variables
 openai.api_key = os.environ.get('OPENAI_API_KEY')
+HARVARD_API_KEY = os.environ.get('HARVARD_API_KEY')
 
 def scrape_painting():
     url = "https://www.harvardartmuseums.org/collections/object/299843"
