@@ -10,15 +10,14 @@
     <div class="container">
         <div class="content">
             <div class="left">
-                <h1>What if you discovered a beautiful artwork everyday?</h1>
-                <button id="discover-art">Discover</button>
+                <h1 id="art-title">Painting of the Day</h1>
                 <div id="loader" style="display:none;">
                     <img src="/static/images/loader.gif" alt="Loading...">
                 </div>
                 <div id="art-info" style="display:none;">
                     <h2>{{ painting.title }}</h2>
                     <p>By {{ painting.artist }} ({{ painting.date }})</p>
-                    <p>{{ painting.info }}</p>
+                    <p class="interpretation">{{ painting.info }}</p>
                     <button id="discover-another">Discover Another</button>
                 </div>
                 <p class="credit">Developed with <span>&hearts;</span> by Dylan. Using Harvard and OpenAI API. Hosted and deployed on Vercel.</p>
@@ -27,36 +26,10 @@
                 <a href="{{ painting.harvard_url }}" target="_blank">
                     <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="painting" id="painting-img" style="display:none;">
                 </a>
+                <button id="discover-art">Discover Art</button>
             </div>
         </div>
     </div>
-    <script>
-        function showLoader() {
-            document.getElementById('discover-art').style.display = 'none';
-            document.getElementById('loader').style.display = 'block';
-        }
-
-        function hideLoader() {
-            document.getElementById('discover-art').style.display = 'block';
-            document.getElementById('loader').style.display = 'none';
-        }
-
-        function showArt() {
-            document.getElementById('art-info').style.display = 'block';
-            document.getElementById('painting-img').style.display = 'block';
-        }
-
-        document.getElementById('discover-art').addEventListener('click', function() {
-            showLoader();
-            setTimeout(function() {
-                hideLoader();
-                showArt();
-            }, 1000);
-        });
-
-        document.getElementById('discover-another').addEventListener('click', function() {
-            location.reload();
-        });
-    </script>
+    <script src="/static/js/main.js"></script>
 </body>
 </html>

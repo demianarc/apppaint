@@ -44,17 +44,42 @@ def scrape_painting():
     }
 
 def generate_artwork_info(artist, title):
-    prompt = f"You are an art critique and poet, please provide a beautiful interpretation of '{title}' by {artist}. Make it short if possible in bullet points. Make it fun and interesting. Include a short section that explains how it could resonate with our current society"
-    response = openai.Completion.create(
+    prompt1 = f"You are an art critique and poet. Please provide a beautiful interpretation of '{title}' by {artist}. Make it short if possible in bullet points. Make it fun and interesting. Include a short section that explains how it could resonate with our current society."
+    prompt2 = f"Using the interpretation above as inspiration, write a short poem (4 lines) about '{title}' by {artist}. Make it fun and creative!"
+    prompt3 = f"You are now writing an article about '{title}' by {artist}. Use the interpretation and poem above to write a 100 word article about this artwork and why it's significant."
+
+    response1 = openai.Completion.create(
         engine="text-davinci-002",
-        prompt=prompt,
-        max_tokens=150,
+        prompt=prompt1,
+        max_tokens=50,
         n=1,
         stop=None,
         temperature=0.7,
     )
 
-    return response.choices[0].text.strip()
+    response2 = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=prompt2,
+        max_tokens=25,
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+
+    response3 = openai.Completion.create(
+        engine="text-davinci-002",
+        prompt=prompt3,
+        max_tokens=100,
+        n=1,
+        stop=None,
+        temperature=0.7,
+    )
+
+    return {
+        "interpretation": response1.choices[0].text.strip(),
+        "poem": response2.choices[0].text.strip(),
+        "article": response3.choices[0].text.strip()
+    }
 
 
 @app.route('/')
