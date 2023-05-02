@@ -1,39 +1,20 @@
-
-function showArt() {
-    document.getElementById('art-info').style.display = 'block';
-    document.getElementById('painting-img').style.display = 'block';
-}
-
-function updateArtwork(painting) {
-    document.getElementById('art-name').innerHTML = painting.title;
-    document.getElementById('art-name').style.display = 'block';
-    document.getElementById('art-desc').innerHTML = painting.info;
-    document.getElementById('painting-img').src = painting.image_url;
-    document.getElementById('painting-img').alt = painting.title;
-    document.getElementById('discover-another').style.display = 'block';
-}
-
-function getNextArtwork() {
-    document.getElementById('discover-art').style.display = 'none';
-
-
-    fetch('/next_artwork')
-        .then(response => response.json())
-        .then(painting => {
-            updateArtwork(painting);
-            document.getElementById('discover-art').style.display = 'block';
-            showArt();
-        })
-        .catch(error => {
-            console.error('Error fetching artwork:', error);
-            document.getElementById('discover-art').style.display = 'block';
-        });
-}
-
-document.getElementById('discover-art').addEventListener('click', function() {
-    getNextArtwork();
-});
-
-document.getElementById('discover-another').addEventListener('click', function() {
-    getNextArtwork();
-});
+document.addEventListener("DOMContentLoaded", () => {
+    const loadButton = document.getElementById("load-button");
+    const imageContainer = document.getElementById("image-container");
+  
+    loadButton.addEventListener("click", async () => {
+      loadButton.disabled = true;
+      const response = await fetch("/get_painting");
+      const result = await response.json();
+      if (result.success) {
+        const { image_url, title, description } = result.data;
+        document.querySelector("h1.title").textContent = title;
+        document.querySelector("p.description").textContent = description;
+        imageContainer.src = image_url;
+      } else {
+        alert("Failed to load painting, please try again.");
+      }
+      loadButton.disabled = false;
+    });
+  });
+  

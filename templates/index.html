@@ -4,24 +4,20 @@
     <meta charset="UTF-8">
     <title>Artwork Generator</title>
     <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <script src="/static/js/app.js"></script>
+    <script src="/static/js/app.js" defer></script>
 </head>
 <body>
     <div class="container">
         <div class="left">
-            <h1 id="art-name" class="hidden"></h1>
-            <p id="art-desc" class="hidden"></p>
-            <button id="discover-another" class="hidden">Discover another artwork</button>
-            <button id="discover-art">Discover artwork</button>
+            <h1 id="art-title">{{ painting.title }}</h1>
+            <p id="art-artist">{{ painting.artist }}</p>
+            <p id="art-date">{{ painting.date }}</p>
+            <p id="art-info">{{ painting.info }}</p>
+            <button id="discover-another">Discover another artwork</button>
         </div>
         <div class="right">
-            <img id="painting-img" class="hidden" src="">
+            <img id="painting-img" src="{{ painting.image_url }}" alt="{{ painting.title }}">
         </div>
     </div>
-
-    <div id="loader" class="hidden">
-    
-    </div>
-
-    <div id="credits">
-        Developed with ❤️ by Dylan. Using Harvard and OpenAI API. Hosted and deployed on Vercel.
+</body>
+</html>
