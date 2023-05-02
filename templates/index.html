@@ -4,27 +4,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painting App</title>
+  <title>Artwork Generator</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 
 <body>
   <div class="container">
-    <div class="painting-container">
-      <img class="painting" src="{{ painting['image_url'] }}" alt="{{ painting['title'] }} by {{ painting['artist'] }}">
-      <div class="buttons">
-        <button class="discover-btn" onclick="window.location.reload()">Discover More</button>
+    <div class="left-column">
+      <h1>Discover Artwork</h1>
+      <p>Get a new piece of art every time you click the button below. Each piece is generated using the latest AI algorithms.</p>
+      <button id="generate-button">Discover More</button>
+      <div id="art-info">
+        <h2 id="art-title">Title</h2>
+        <p id="art-artist">Artist</p>
+        <p id="art-date">Date</p>
+        <p id="art-fact">Fact</p>
+        <p id="art-quote">Quote</p>
+        <p id="art-take">Take</p>
+      </div>
+      <p id="credit">Developed with <3 by Dylan. Using Harvard and OpenAI API. Hosted and deployed on Vercel.</p>
+    </div>
+    <div class="right-column">
+      <div id="art-container">
+        <img id="art-image" src="" alt="Artwork">
       </div>
     </div>
-    <div class="info-container">
-      <h1>{{ painting['title'] }}</h1>
-      <h2>by {{ painting['artist'] }} ({{ painting['date'] }})</h2>
-      <p class="info">{{ painting['info'] }}</p>
-    </div>
   </div>
-  <footer>
-    <p class="credits">Developed with ❤️ by Dylan. Using Harvard and OpenAI API. Hosted and deployed on Vercel.</p>
-  </footer>
+
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
 </body>
 
 </html>
