@@ -43,7 +43,7 @@ def scrape_painting():
     }
 
 def generate_artwork_info(artist, title):
-    prompt = f"You are a rapper and comedian, make a funny interpretation of '{title}' by {artist}. Make it short if possible in bullet points. Make it fun and interesting. Include a short section that explains how it could resonate with our current society"
+    prompt = f"You are an art critique and poet, please provide a beautiful interpretation of '{title}' by {artist}. Make it short if possible in bullet points. Make it fun and interesting. Include a short section that explains how it could resonate with our current society"
     response = openai.Completion.create(
         engine="text-davinci-002",
         prompt=prompt,
