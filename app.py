@@ -19,7 +19,8 @@ def scrape_painting():
 
     # Scrape painting image and metadata (e.g., title, artist, date) from the source
     # The actual tags and attributes used may vary depending on the source
-    image_url = soup.find("img", class_="primary-image").get("src")
+    image_tag = soup.find("img", class_="primary-image")
+    image_url = image_tag.get("src") if image_tag else None
     title = soup.find("h1", class_="title").text
     artist = soup.find("div", class_="people-list__person").text
     date = soup.find("span", class_="date-display-single").text
