@@ -1,7 +1,5 @@
-from flask import Flask, render_template
 from flask import Flask, render_template, jsonify
 import requests
-from bs4 import BeautifulSoup
 import openai
 import random
 import os
@@ -89,10 +87,12 @@ def painting_of_the_day():
     painting["info"] = painting_info
     return render_template('index.html', painting=painting)
 
-@app.route('/background_image')
-def background_image():
+@app.route('/next_artwork')
+def next_artwork():
     painting = scrape_painting()
-    return jsonify({"image_url": painting["image_url"]})
+    painting_info = generate_artwork_info(painting["artist"], painting["title"])
+    painting["info"] = painting_info
+    return jsonify(painting)
 
 if __name__ == '__main__':
     import os
