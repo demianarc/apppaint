@@ -21,9 +21,15 @@ def scrape_painting():
     # The actual tags and attributes used may vary depending on the source
     image_tag = soup.find("img", class_="primary-image")
     image_url = image_tag.get("src") if image_tag else None
-    title = soup.find("h1", class_="title").text
-    artist = soup.find("div", class_="people-list__person").text
-    date = soup.find("span", class_="date-display-single").text
+
+    title_tag = soup.find("h1", class_="title")
+    title = title_tag.text if title_tag else "Unknown Title"
+
+    artist_tag = soup.find("div", class_="people-list__person")
+    artist = artist_tag.text if artist_tag else "Unknown Artist"
+
+    date_tag = soup.find("span", class_="date-display-single")
+    date = date_tag.text if date_tag else "Unknown Date"
 
     return {
         "image_url": image_url,
