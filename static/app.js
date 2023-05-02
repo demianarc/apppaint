@@ -1,11 +1,3 @@
-function showLoader() {
-    document.getElementById('discover-art').style.display = 'none';
-    document.getElementById('loader').style.display = 'block';
-}
-
-function hideLoader() {
-    document.getElementById('loader').style.display = 'none';
-}
 
 function showArt() {
     document.getElementById('art-info').style.display = 'block';
@@ -22,18 +14,19 @@ function updateArtwork(painting) {
 }
 
 function getNextArtwork() {
-    showLoader();
+    document.getElementById('discover-art').style.display = 'none';
+
 
     fetch('/next_artwork')
         .then(response => response.json())
         .then(painting => {
             updateArtwork(painting);
-            hideLoader();
+            document.getElementById('discover-art').style.display = 'block';
             showArt();
         })
         .catch(error => {
             console.error('Error fetching artwork:', error);
-            hideLoader();
+            document.getElementById('discover-art').style.display = 'block';
         });
 }
 
