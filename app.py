@@ -2,32 +2,33 @@ from flask import Flask, render_template, jsonify
 import requests
 from bs4 import BeautifulSoup
 import openai
-import random
 import os
 
-
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 # Load OpenAI API key from environment variables
-openai.api_key = os.environ.get("OPENAI_API_KEY")
-
+openai.api_key = os.environ.get('OPENAI_API_KEY')
 
 def scrape_painting():
-    api_key = os.environ.get("HARVARD_API_KEY")
-    url = f"https://api.harvardartmuseums.org/object?apikey={api_key}&size=100&sort=random&classification=Paintings&hasimage=1&sortorder=asc"
+    url = "https://www.harvardartmuseums.org/collections/object/299843"
     response = requests.get(url)
-    print(f"URL: {url}")
-    print(f"Response status code: {response.status_code}")
-    print(f"Response text: {response.text}")
-    data = response.json()
+    soup = BeautifulSoup(response.text, "html.parser")
 
-    if "records" not in data or not data["records"]:
-        return {
-            "image_url": None,
-            "title": None,
-            "artist": None,
-            "date": None
-        }
+    # Scrape painting image and metadata (e.g., title, artist, date) from the source
+    # The actual tags and attributes used may vary depending on the source
+    image_url = soup.find("img", class_="primary-image").get("src")
+    title = soup.find("h1", class_="title").text
+    artist = soup.find("div", class_="people-list__person").text
+    date = soup.find("span", class_="date-display-single").text
+
+    return {
+        "image_url": image_url,
+        "title": title,
+        "artist": artist,
+        "date": date
+    }
 
     painting = random.choice(data["records"])
 
@@ -90,22 +91,13 @@ def index():
     painting["info"] = painting_info
     return render_template('index.html', painting=painting)
 
-
-@app.route('/background_image')
-def background_image():
-    painting = scrape_painting()
-    return jsonify({"image_url": painting["image_url"]})
-
-
-@app.route('/painting')
-def painting():
+@app.route('/next_artwork')
+def next_artwork():
     painting = scrape_painting()
     painting_info = generate_artwork_info(painting["artist"], painting["title"])
     painting["info"] = painting_info
-    return render_template('artwork.html', painting=painting)
+    return jsonify(painting)
 
 if __name__ == '__main__':
-    import os
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-
