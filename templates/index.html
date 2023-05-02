@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painting of the Day</title>
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="content">
@@ -15,25 +17,19 @@
                     <img src="/static/images/loader.gif" alt="Loading...">
                 </div>
                 <div id="art-info" style="display:none;">
-                    <h2>{{ painting.title }}</h2>
-                    <p>By {{ painting.artist }} ({{ painting.date }})</p>
-                    <p class="interpretation">{{ painting.info.interpretation }}</p>
-                    <h3>Poem</h3>
-                    <p class="poem">{{ painting.info.poem }}</p>
-                    <h3>Article</h3>
-                    <p class="article">{{ painting.info.article }}</p>
+                    <h2 id="art-name"></h2>
+                    <p id="art-desc"></p>
                     <button id="discover-another">Discover Another</button>
                 </div>
                 <p class="credit">Developed with <span>&hearts;</span> by Dylan. Using Harvard and OpenAI API. Hosted and deployed on Vercel.</p>
             </div>
             <div class="right">
-                <a href="{{ painting.harvard_url }}" target="_blank">
-                    <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="painting" id="painting-img" style="display:none;">
-                </a>
+                <img src="" alt="Artwork" class="painting" id="painting-img">
                 <button id="discover-art">Discover Art</button>
             </div>
         </div>
     </div>
     <script src="/static/js/app.js"></script>
 </body>
+
 </html>

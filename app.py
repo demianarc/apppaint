@@ -77,7 +77,7 @@ def generate_artwork_info(artist, title):
     }
 
 @app.route('/')
-def painting_of_the_day():
+def index():
     painting = scrape_painting()
     painting_info = generate_artwork_info(painting["artist"], painting["title"])
     painting["info"] = painting_info
