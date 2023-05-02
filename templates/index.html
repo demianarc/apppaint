@@ -1,44 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Artify</title>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painting App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
+
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 col-md-12 col-sm-12 left-col">
-                <h1 class="main-heading">Artify</h1>
-                <p class="sub-heading">Discover and appreciate great works of art</p>
-                <div class="art-info">
-                    <div class="info">
-                        <h2 id="title">{{ painting.title }}</h2>
-                        <p id="artist">{{ painting.artist }}</p>
-                        <p id="date">{{ painting.date }}</p>
-                        <p id="interpretation">{{ painting.info.interpretation }}</p>
-                        <p id="poem">{{ painting.info.poem }}</p>
-                        <p id="article">{{ painting.info.article }}</p>
-                        <button class="btn-discover" onclick="loadNewPainting()">Discover More</button>
-                    </div>
-                    <div class="art-image">
-                        <img id="image" src="{{ painting.image_url }}" alt="{{ painting.title }}" />
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 right-col">
-                <div class="credits">
-                    <p>Developed with &lt;3 by Dylan.</p>
-                    <p>Using Harvard and OpenAI API.</p>
-                    <p>Hosted and deployed on Vercel.</p>
-                </div>
-            </div>
-        </div>
+  <div class="container">
+    <div class="painting-container">
+      <img class="painting" src="{{ painting['image_url'] }}" alt="{{ painting['title'] }} by {{ painting['artist'] }}">
+      <div class="buttons">
+        <button class="discover-btn" onclick="window.location.reload()">Discover More</button>
+      </div>
     </div>
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <div class="info-container">
+      <h1>{{ painting['title'] }}</h1>
+      <h2>by {{ painting['artist'] }} ({{ painting['date'] }})</h2>
+      <p class="info">{{ painting['info'] }}</p>
+    </div>
+  </div>
+  <footer>
+    <p class="credits">Developed with ❤️ by Dylan. Using Harvard and OpenAI API. Hosted and deployed on Vercel.</p>
+  </footer>
 </body>
+
 </html>
