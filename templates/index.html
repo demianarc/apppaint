@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Artwork Generator</title>
-    <link rel="stylesheet" type="text/css" href="/static/css/style.css">
-    <script src="/static/js/app.js" defer></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="app.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <div class="left">
-            <h1 id="art-title">{{ painting.title }}</h1>
-            <p id="art-artist">{{ painting.artist }}</p>
-            <p id="art-date">{{ painting.date }}</p>
-            <p id="art-info">{{ painting.info }}</p>
-            <button id="discover-another">Discover another artwork</button>
-        </div>
-        <div class="right">
-            <img id="painting-img" src="{{ painting.image_url }}" alt="{{ painting.title }}">
+    <h1>Art Explorer</h1>
+    <div id="painting-container">
+        <img id="painting-image" src="" alt="Painting">
+        <div id="painting-info">
+            <h2 id="painting-title"></h2>
+            <h3 id="painting-artist"></h3>
+            <h4 id="painting-date"></h4>
+            <p id="painting-description"></p>
         </div>
     </div>
+    <button id="load-painting">Load Painting</button>
 </body>
 </html>
+
