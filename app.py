@@ -83,12 +83,12 @@ def index():
     painting["info"] = painting_info
     return render_template('index.html', painting=painting)
 
-@app.route('/next_artwork')
-def next_artwork():
+@app.route('/')
+def artwork():
     painting = scrape_painting()
     painting_info = generate_artwork_info(painting["artist"], painting["title"])
     painting["info"] = painting_info
-    return jsonify(painting)
+    return render_template('artwork.html', painting=painting)
 
 if __name__ == '__main__':
     import os

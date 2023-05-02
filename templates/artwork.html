@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painting of the Day</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="left">
+                <h1 id="art-title">Painting of the Day</h1>
+                <div id="loader" style="display:none;">
+                    <img src="/static/images/loader.gif" alt="Loading...">
+                </div>
+                <div id="art-info" style="display:none;">
+                    <h2>{{ painting.title }}</h2>
+                    <p>By {{ painting.artist }} ({{ painting.date }})</p>
+                    <p class="interpretation">{{ painting.info.interpretation }}</p>
+                    <p class="poem">{{ painting.info.poem }}</p>
+                    <p class="article">{{ painting.info.article }}</p>
+                    <button id="discover-another">Discover Another</button>
+                </div>
+                <p class="credit">Developed with <span>&hearts;</span> by Dylan. Using Harvard and OpenAI API. Hosted and deployed on Vercel.</p>
+            </div>
+            <div class="right">
+                <img src="{{ painting.image_url }}" alt="{{ painting.title }}" class="painting" id="painting-img">
+            </div>
+        </div>
+    </div>
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
